@@ -1,0 +1,38 @@
+[
+  {
+    "Id": 3,
+    "Name": "Sma\u017E\u00E1k",
+    "Category": "J\u00EDdlo",
+    "Price": 195
+  },
+  {
+    "Id": 4,
+    "Name": "Vep\u0159oKnedloZelo",
+    "Category": "J\u00EDdlo",
+    "Price": 220
+  },
+  {
+    "Id": 5,
+    "Name": "Chleba",
+    "Category": "J\u00EDdlo",
+    "Price": 50
+  },
+  {
+    "Id": 6,
+    "Name": "Tatar\u00E1k",
+    "Category": "J\u00EDdlo",
+    "Price": 230
+  },
+  {
+    "Id": 5,
+    "Name": "Coca-cola",
+    "Category": "Pit\u00ED",
+    "Price": 50
+  },
+  {
+    "Id": 7,
+    "Name": "Coca-cola Zero",
+    "Category": "Pit\u00ED",
+    "Price": 50
+  }
+]
