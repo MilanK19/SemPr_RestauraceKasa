@@ -2,7 +2,7 @@
 
 Základní funkcionality
 - Administrační(editační) okno
-  -CRUD databáze(produkty, stoly, kategorie)
+  - CRUD databáze(produkty, stoly, kategorie)
 
 - Okno pro obsluhu
   - Zde může obsluha dělat objednávky stolů
