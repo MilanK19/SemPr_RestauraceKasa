@@ -1,10 +1,74 @@
 [
   {
-    "TableNumber": 1,
-    "isOccupied": false
+    "TableNumber": 11,
+    "CurrentOrder": {
+      "Id": 0,
+      "TableNumber": 0,
+      "Items": [],
+      "CreatedAt": "0001-01-01T00:00:00",
+      "isPaid": false,
+      "TotalPrice": 0
+    },
+    "IsOccupied": false
   },
   {
-    "TableNumber": 2,
-    "isOccupied": false
+    "TableNumber": 12,
+    "CurrentOrder": {
+      "Id": 0,
+      "TableNumber": 0,
+      "Items": [],
+      "CreatedAt": "0001-01-01T00:00:00",
+      "isPaid": false,
+      "TotalPrice": 0
+    },
+    "IsOccupied": false
+  },
+  {
+    "TableNumber": 13,
+    "CurrentOrder": {
+      "Id": 0,
+      "TableNumber": 0,
+      "Items": [],
+      "CreatedAt": "0001-01-01T00:00:00",
+      "isPaid": false,
+      "TotalPrice": 0
+    },
+    "IsOccupied": false
+  },
+  {
+    "TableNumber": 21,
+    "CurrentOrder": {
+      "Id": 0,
+      "TableNumber": 0,
+      "Items": [],
+      "CreatedAt": "0001-01-01T00:00:00",
+      "isPaid": false,
+      "TotalPrice": 0
+    },
+    "IsOccupied": false
+  },
+  {
+    "TableNumber": 22,
+    "CurrentOrder": {
+      "Id": 0,
+      "TableNumber": 0,
+      "Items": [],
+      "CreatedAt": "0001-01-01T00:00:00",
+      "isPaid": false,
+      "TotalPrice": 0
+    },
+    "IsOccupied": false
+  },
+  {
+    "TableNumber": 23,
+    "CurrentOrder": {
+      "Id": 0,
+      "TableNumber": 0,
+      "Items": [],
+      "CreatedAt": "0001-01-01T00:00:00",
+      "isPaid": false,
+      "TotalPrice": 0
+    },
+    "IsOccupied": false
   }
 ]

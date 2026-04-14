@@ -40,6 +40,7 @@
             btnSales.TabIndex = 0;
             btnSales.Text = "Obsluha";
             btnSales.UseVisualStyleBackColor = true;
+            btnSales.Click += BtnSales_Click;
             // 
             // btnAdmin
             // 
@@ -47,9 +48,9 @@
             btnAdmin.Name = "btnAdmin";
             btnAdmin.Size = new Size(184, 63);
             btnAdmin.TabIndex = 1;
-            btnAdmin.Text = "Editace";
+            btnAdmin.Text = "Administrace";
             btnAdmin.UseVisualStyleBackColor = true;
-            btnAdmin.Click += btnAdmin_Click;
+            btnAdmin.Click += BtnAdmin_Click;
             // 
             // Form1
             // 
@@ -59,7 +60,8 @@
             Controls.Add(btnAdmin);
             Controls.Add(btnSales);
             Name = "Form1";
-            Text = "Form1";
+            Text = "Kasa";
+            FormClosing += Form1_FormClosing;
             ResumeLayout(false);
         }
 

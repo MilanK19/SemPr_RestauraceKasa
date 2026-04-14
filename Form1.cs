@@ -20,7 +20,7 @@ namespace RestauraceKasa
         }
 
 
-        private void btnAdmin_Click(object sender, EventArgs e)
+        private void BtnAdmin_Click(object sender, EventArgs e)
         {
             FormAdmin adminWindow = new FormAdmin(_products, _tables, _categories);
             adminWindow.ShowDialog();
@@ -31,13 +31,20 @@ namespace RestauraceKasa
 
         }
 
-        private void btnSales_Click(object sender, EventArgs e)
+        private void BtnSales_Click(object sender, EventArgs e)
         {
             FormSales salesWindow = new FormSales();
             salesWindow.ShowDialog();
         }
 
-       
+
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DataManager.SaveData(_products, "products.json");
+            DataManager.SaveData(_tables, "tables.json");
+            DataManager.SaveData(_categories, "categories.json");
+        }
 
 
 

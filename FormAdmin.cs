@@ -15,7 +15,7 @@ namespace RestauraceKasa
         private BindingList<RestaurantTable> _tablesBinding;
         private BindingList<string> _categoriesBinding;
 
-        
+      
 
 
         public FormAdmin(List<Product> products, List<RestaurantTable> tables, List<string> categories)
@@ -33,7 +33,7 @@ namespace RestauraceKasa
             
         }
 
-        private void btnAddProduct_Click(object sender, EventArgs e)
+        private void BtnAddProduct_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(txtProductName.Text) || cmbCategory.SelectedIndex == -1) return;
 
@@ -55,18 +55,22 @@ namespace RestauraceKasa
 
         }
 
-        private void btnDeleteProduct_Click(object sender, EventArgs e)
+        private void BtnDeleteProduct_Click(object sender, EventArgs e)
         {
             if(dgvProducts.CurrentRow != null)
             {
                 var productToDelete = (Product)dgvProducts.CurrentRow.DataBoundItem;
                 _productsBinding.Remove(productToDelete);
+
+                txtProductName.Clear();
+                numProductPrice.Value = 0;
+                cmbCategory.SelectedIndex = -1;
             }
         }
 
-        private void dgvProducts_SelectionChanged(object sender, EventArgs e)
+        private void DgvProducts_SelectionChanged(object sender, EventArgs e)
         {
-            if(dgvProducts != null)
+            if(dgvProducts.CurrentRow != null)
             {
                 var selectedProduct = (Product)dgvProducts.CurrentRow.DataBoundItem;
 
@@ -76,9 +80,11 @@ namespace RestauraceKasa
             }
         }
 
-        private void btnUpdateProduct_Click(object sender, EventArgs e)
+        private void BtnUpdateProduct_Click(object sender, EventArgs e)
         {
-            if(dgvProducts.CurrentRow != null)
+            if (string.IsNullOrWhiteSpace(txtProductName.Text) || cmbCategory.SelectedIndex == -1) return;
+
+            if (dgvProducts.CurrentRow != null)
             {
                 var productToUpdate = (Product)dgvProducts.CurrentRow.DataBoundItem;
 
@@ -94,14 +100,14 @@ namespace RestauraceKasa
 
 
 
-        private void btnAddTable_Click(object sender, EventArgs e)
+        private void BtnAddTable_Click(object sender, EventArgs e)
         {
             if (numTableNumber.Value <= 0) return;
 
             var newTable = new RestaurantTable()
             {
                 TableNumber = (int)numTableNumber.Value,
-                isOccupied = false
+                IsOccupied = false
             };
 
             _tablesBinding.Add(newTable);
@@ -110,18 +116,20 @@ namespace RestauraceKasa
 
         }
 
-        private void btnDeleteTable_Click(object obj, EventArgs e)
+        private void BtnDeleteTable_Click(object obj, EventArgs e)
         {
             if (dgvTables.CurrentRow != null)
             {
                 var tableToDelete = (RestaurantTable)dgvTables.CurrentRow.DataBoundItem;
                 _tablesBinding.Remove(tableToDelete);
+
+                numTableNumber.Value = 0;
             }
         }
 
-        private void dgvTables_SelectionChanged(object sender, EventArgs e)
+        private void DgvTables_SelectionChanged(object sender, EventArgs e)
         {
-            if (dgvTables != null)
+            if (dgvTables.CurrentRow != null)
             {
                 var selectedTable = (RestaurantTable)dgvTables.CurrentRow.DataBoundItem;
 
@@ -129,7 +137,7 @@ namespace RestauraceKasa
             }
         }
 
-        private void btnUpdateTable_Click(object sender, EventArgs e)
+        private void BtnUpdateTable_Click(object sender, EventArgs e)
         {
             if (dgvTables.CurrentRow != null)
             {
@@ -142,7 +150,7 @@ namespace RestauraceKasa
             }
         }
 
-        private void btnAddCategory_Click(object sender, EventArgs e)
+        private void BtnAddCategory_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(txtCategory.Text))
             {
@@ -157,7 +165,7 @@ namespace RestauraceKasa
 
         }
 
-        private void btnDeleteCategory_Click(object  obj, EventArgs e)
+        private void BtnDeleteCategory_Click(object  obj, EventArgs e)
         {
             if (lbCategories.SelectedItem != null)
             {
@@ -168,7 +176,7 @@ namespace RestauraceKasa
             }
         }
 
-        private void lbCategories_SelectionChanged(object sender, EventArgs e)
+        private void LbCategories_SelectionChanged(object sender, EventArgs e)
         {
             if (lbCategories.SelectedIndex != -1 && lbCategories.SelectedItem != null)
             {
@@ -177,7 +185,7 @@ namespace RestauraceKasa
         }
 
 
-        private void btnUpdateCategory_Click(object sender, EventArgs e)
+        private void BtnUpdateCategory_Click(object sender, EventArgs e)
         {
             int selectedIndex = lbCategories.SelectedIndex;
 

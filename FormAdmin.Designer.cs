@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             tabControl1 = new TabControl();
             tabMenu = new TabPage();
             panel1 = new Panel();
@@ -49,6 +50,10 @@
             label1 = new Label();
             numTableNumber = new NumericUpDown();
             dgvTables = new DataGridView();
+            tableNumberDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            currentOrderDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            isOccupiedDataGridViewCheckBoxColumn = new DataGridViewCheckBoxColumn();
+            restaurantTableBindingSource = new BindingSource(components);
             tabCategory = new TabPage();
             lbCategories = new ListBox();
             panel3 = new Panel();
@@ -57,6 +62,11 @@
             btnAddCategory = new Button();
             labelEditCategory = new Label();
             txtCategory = new TextBox();
+            productBindingSource = new BindingSource(components);
+            idDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            nameDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            categoryDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            priceDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             tabControl1.SuspendLayout();
             tabMenu.SuspendLayout();
             panel1.SuspendLayout();
@@ -66,8 +76,10 @@
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)numTableNumber).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvTables).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)restaurantTableBindingSource).BeginInit();
             tabCategory.SuspendLayout();
             panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)productBindingSource).BeginInit();
             SuspendLayout();
             // 
             // tabControl1
@@ -133,9 +145,9 @@
             btnUpdateProduct.Name = "btnUpdateProduct";
             btnUpdateProduct.Size = new Size(99, 43);
             btnUpdateProduct.TabIndex = 6;
-            btnUpdateProduct.Text = "Uložit Změny";
+            btnUpdateProduct.Text = "Uložit změny Produktu";
             btnUpdateProduct.UseVisualStyleBackColor = true;
-            btnUpdateProduct.Click += btnUpdateProduct_Click;
+            btnUpdateProduct.Click += BtnUpdateProduct_Click;
             // 
             // btnDeleteProduct
             // 
@@ -143,9 +155,9 @@
             btnDeleteProduct.Name = "btnDeleteProduct";
             btnDeleteProduct.Size = new Size(99, 43);
             btnDeleteProduct.TabIndex = 5;
-            btnDeleteProduct.Text = "Smazat vybrané";
+            btnDeleteProduct.Text = "Smazat vybraný produkt";
             btnDeleteProduct.UseVisualStyleBackColor = true;
-            btnDeleteProduct.Click += btnDeleteProduct_Click;
+            btnDeleteProduct.Click += BtnDeleteProduct_Click;
             // 
             // btnAddProduct
             // 
@@ -155,7 +167,7 @@
             btnAddProduct.TabIndex = 4;
             btnAddProduct.Text = "Přidat do menu";
             btnAddProduct.UseVisualStyleBackColor = true;
-            btnAddProduct.Click += btnAddProduct_Click;
+            btnAddProduct.Click += BtnAddProduct_Click;
             // 
             // numProductPrice
             // 
@@ -194,7 +206,11 @@
             // 
             dgvProducts.AllowUserToAddRows = false;
             dgvProducts.AllowUserToDeleteRows = false;
+            dgvProducts.AutoGenerateColumns = false;
+            dgvProducts.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvProducts.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvProducts.Columns.AddRange(new DataGridViewColumn[] { idDataGridViewTextBoxColumn, nameDataGridViewTextBoxColumn, categoryDataGridViewTextBoxColumn, priceDataGridViewTextBoxColumn });
+            dgvProducts.DataSource = productBindingSource;
             dgvProducts.Location = new Point(6, 6);
             dgvProducts.MultiSelect = false;
             dgvProducts.Name = "dgvProducts";
@@ -202,7 +218,7 @@
             dgvProducts.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvProducts.Size = new Size(440, 386);
             dgvProducts.TabIndex = 0;
-            dgvProducts.SelectionChanged += dgvProducts_SelectionChanged;
+            dgvProducts.SelectionChanged += DgvProducts_SelectionChanged;
             // 
             // tabTables
             // 
@@ -223,7 +239,7 @@
             panel2.Controls.Add(btnDeleteTable);
             panel2.Controls.Add(label1);
             panel2.Controls.Add(numTableNumber);
-            panel2.Location = new Point(376, 9);
+            panel2.Location = new Point(267, 9);
             panel2.Name = "panel2";
             panel2.Size = new Size(275, 386);
             panel2.TabIndex = 5;
@@ -234,9 +250,9 @@
             btnUpdateTable.Name = "btnUpdateTable";
             btnUpdateTable.Size = new Size(106, 43);
             btnUpdateTable.TabIndex = 5;
-            btnUpdateTable.Text = "Uložit změny";
+            btnUpdateTable.Text = "Uložit změny stolu";
             btnUpdateTable.UseVisualStyleBackColor = true;
-            btnUpdateTable.Click += btnUpdateProduct_Click;
+            btnUpdateTable.Click += BtnUpdateTable_Click;
             // 
             // btnAddTable
             // 
@@ -246,7 +262,7 @@
             btnAddTable.TabIndex = 3;
             btnAddTable.Text = "Přidat stůl";
             btnAddTable.UseVisualStyleBackColor = true;
-            btnAddTable.Click += btnAddTable_Click;
+            btnAddTable.Click += BtnAddTable_Click;
             // 
             // btnDeleteTable
             // 
@@ -254,22 +270,22 @@
             btnDeleteTable.Name = "btnDeleteTable";
             btnDeleteTable.Size = new Size(108, 43);
             btnDeleteTable.TabIndex = 4;
-            btnDeleteTable.Text = "Smazat stůl";
+            btnDeleteTable.Text = "Smazat vybraný stůl";
             btnDeleteTable.UseVisualStyleBackColor = true;
-            btnDeleteTable.Click += btnDeleteTable_Click;
+            btnDeleteTable.Click += BtnDeleteTable_Click;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Location = new Point(36, 27);
             label1.Name = "label1";
-            label1.Size = new Size(62, 15);
+            label1.Size = new Size(65, 15);
             label1.TabIndex = 1;
-            label1.Text = "Číslo stolu";
+            label1.Text = "Číslo stolu:";
             // 
             // numTableNumber
             // 
-            numTableNumber.Location = new Point(114, 25);
+            numTableNumber.Location = new Point(113, 25);
             numTableNumber.Maximum = new decimal(new int[] { 1000000, 0, 0, 0 });
             numTableNumber.Name = "numTableNumber";
             numTableNumber.Size = new Size(51, 23);
@@ -279,15 +295,46 @@
             // 
             dgvTables.AllowUserToAddRows = false;
             dgvTables.AllowUserToDeleteRows = false;
+            dgvTables.AutoGenerateColumns = false;
+            dgvTables.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvTables.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvTables.Columns.AddRange(new DataGridViewColumn[] { tableNumberDataGridViewTextBoxColumn, currentOrderDataGridViewTextBoxColumn, isOccupiedDataGridViewCheckBoxColumn });
+            dgvTables.DataSource = restaurantTableBindingSource;
             dgvTables.Location = new Point(6, 6);
             dgvTables.MultiSelect = false;
             dgvTables.Name = "dgvTables";
             dgvTables.ReadOnly = true;
             dgvTables.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvTables.Size = new Size(364, 386);
+            dgvTables.Size = new Size(255, 386);
             dgvTables.TabIndex = 0;
-            dgvTables.SelectionChanged += dgvTables_SelectionChanged;
+            dgvTables.SelectionChanged += DgvTables_SelectionChanged;
+            // 
+            // tableNumberDataGridViewTextBoxColumn
+            // 
+            tableNumberDataGridViewTextBoxColumn.DataPropertyName = "TableNumber";
+            tableNumberDataGridViewTextBoxColumn.HeaderText = "Číslo stolu";
+            tableNumberDataGridViewTextBoxColumn.Name = "tableNumberDataGridViewTextBoxColumn";
+            tableNumberDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // currentOrderDataGridViewTextBoxColumn
+            // 
+            currentOrderDataGridViewTextBoxColumn.DataPropertyName = "CurrentOrder";
+            currentOrderDataGridViewTextBoxColumn.HeaderText = "CurrentOrder";
+            currentOrderDataGridViewTextBoxColumn.Name = "currentOrderDataGridViewTextBoxColumn";
+            currentOrderDataGridViewTextBoxColumn.ReadOnly = true;
+            currentOrderDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // isOccupiedDataGridViewCheckBoxColumn
+            // 
+            isOccupiedDataGridViewCheckBoxColumn.DataPropertyName = "IsOccupied";
+            isOccupiedDataGridViewCheckBoxColumn.HeaderText = "IsOccupied";
+            isOccupiedDataGridViewCheckBoxColumn.Name = "isOccupiedDataGridViewCheckBoxColumn";
+            isOccupiedDataGridViewCheckBoxColumn.ReadOnly = true;
+            isOccupiedDataGridViewCheckBoxColumn.Visible = false;
+            // 
+            // restaurantTableBindingSource
+            // 
+            restaurantTableBindingSource.DataSource = typeof(Models.RestaurantTable);
             // 
             // tabCategory
             // 
@@ -308,7 +355,7 @@
             lbCategories.Name = "lbCategories";
             lbCategories.Size = new Size(249, 379);
             lbCategories.TabIndex = 2;
-            lbCategories.SelectedIndexChanged += lbCategories_SelectionChanged;
+            lbCategories.SelectedIndexChanged += LbCategories_SelectionChanged;
             // 
             // panel3
             // 
@@ -328,9 +375,9 @@
             btnUpdateCategory.Name = "btnUpdateCategory";
             btnUpdateCategory.Size = new Size(108, 38);
             btnUpdateCategory.TabIndex = 4;
-            btnUpdateCategory.Text = "Uložit změny";
+            btnUpdateCategory.Text = "Uložit změny kategorie";
             btnUpdateCategory.UseVisualStyleBackColor = true;
-            btnUpdateCategory.Click += btnUpdateCategory_Click;
+            btnUpdateCategory.Click += BtnUpdateCategory_Click;
             // 
             // btnDeleteCategory
             // 
@@ -338,9 +385,9 @@
             btnDeleteCategory.Name = "btnDeleteCategory";
             btnDeleteCategory.Size = new Size(111, 38);
             btnDeleteCategory.TabIndex = 3;
-            btnDeleteCategory.Text = "Smazat kategorii";
+            btnDeleteCategory.Text = "Smazat vybranou kategorii";
             btnDeleteCategory.UseVisualStyleBackColor = true;
-            btnDeleteCategory.Click += btnDeleteCategory_Click;
+            btnDeleteCategory.Click += BtnDeleteCategory_Click;
             // 
             // btnAddCategory
             // 
@@ -350,7 +397,7 @@
             btnAddCategory.TabIndex = 2;
             btnAddCategory.Text = "Přidat Kategorii";
             btnAddCategory.UseVisualStyleBackColor = true;
-            btnAddCategory.Click += btnAddCategory_Click;
+            btnAddCategory.Click += BtnAddCategory_Click;
             // 
             // labelEditCategory
             // 
@@ -368,6 +415,38 @@
             txtCategory.Size = new Size(111, 23);
             txtCategory.TabIndex = 0;
             // 
+            // productBindingSource
+            // 
+            productBindingSource.DataSource = typeof(Models.Product);
+            // 
+            // idDataGridViewTextBoxColumn
+            // 
+            idDataGridViewTextBoxColumn.DataPropertyName = "Id";
+            idDataGridViewTextBoxColumn.HeaderText = "Id";
+            idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            idDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            nameDataGridViewTextBoxColumn.HeaderText = "Název";
+            nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            nameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // categoryDataGridViewTextBoxColumn
+            // 
+            categoryDataGridViewTextBoxColumn.DataPropertyName = "Category";
+            categoryDataGridViewTextBoxColumn.HeaderText = "Kategorie";
+            categoryDataGridViewTextBoxColumn.Name = "categoryDataGridViewTextBoxColumn";
+            categoryDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // priceDataGridViewTextBoxColumn
+            // 
+            priceDataGridViewTextBoxColumn.DataPropertyName = "Price";
+            priceDataGridViewTextBoxColumn.HeaderText = "Cena";
+            priceDataGridViewTextBoxColumn.Name = "priceDataGridViewTextBoxColumn";
+            priceDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
             // FormAdmin
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -375,7 +454,7 @@
             ClientSize = new Size(800, 450);
             Controls.Add(tabControl1);
             Name = "FormAdmin";
-            Text = "FormAdmin";
+            Text = "Administrace";
             tabControl1.ResumeLayout(false);
             tabMenu.ResumeLayout(false);
             panel1.ResumeLayout(false);
@@ -387,9 +466,11 @@
             panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)numTableNumber).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgvTables).EndInit();
+            ((System.ComponentModel.ISupportInitialize)restaurantTableBindingSource).EndInit();
             tabCategory.ResumeLayout(false);
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)productBindingSource).EndInit();
             ResumeLayout(false);
         }
 
@@ -407,7 +488,6 @@
         private Button btnAddProduct;
         private NumericUpDown numProductPrice;
         private Button btnAddTable;
-        private NumericUpDown numTableNumber;
         private Label label1;
         private DataGridView dgvTables;
         private Panel panel2;
@@ -424,5 +504,15 @@
         private Button btnDeleteCategory;
         private Button btnAddCategory;
         private ListBox lbCategories;
+        private NumericUpDown numTableNumber;
+        private DataGridViewTextBoxColumn tableNumberDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn currentOrderDataGridViewTextBoxColumn;
+        private DataGridViewCheckBoxColumn isOccupiedDataGridViewCheckBoxColumn;
+        private BindingSource restaurantTableBindingSource;
+        private DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn categoryDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn priceDataGridViewTextBoxColumn;
+        private BindingSource productBindingSource;
     }
 }
