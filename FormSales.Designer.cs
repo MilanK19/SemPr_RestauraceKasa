@@ -28,76 +28,101 @@
         /// </summary>
         private void InitializeComponent()
         {
-            dataGridView1 = new DataGridView();
-            panel1 = new Panel();
-            panel2 = new Panel();
-            panel3 = new Panel();
-            panel4 = new Panel();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            dgvOrder = new DataGridView();
+            panelActions = new Panel();
+            panelTables = new FlowLayoutPanel();
+            lblTables = new Label();
+            panelCategories = new FlowLayoutPanel();
+            panelProducts = new FlowLayoutPanel();
+            ((System.ComponentModel.ISupportInitialize)dgvOrder).BeginInit();
             SuspendLayout();
             // 
-            // dataGridView1
+            // dgvOrder
             // 
-            dataGridView1.AllowUserToAddRows = false;
-            dataGridView1.AllowUserToDeleteRows = false;
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(142, 12);
-            dataGridView1.MultiSelect = false;
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.ReadOnly = true;
-            dataGridView1.Size = new Size(267, 217);
-            dataGridView1.TabIndex = 0;
+            dgvOrder.AllowUserToAddRows = false;
+            dgvOrder.AllowUserToDeleteRows = false;
+            dgvOrder.BackgroundColor = SystemColors.Info;
+            dgvOrder.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvOrder.GridColor = SystemColors.Info;
+            dgvOrder.Location = new Point(199, 12);
+            dgvOrder.MultiSelect = false;
+            dgvOrder.Name = "dgvOrder";
+            dgvOrder.ReadOnly = true;
+            dgvOrder.Size = new Size(420, 434);
+            dgvOrder.TabIndex = 0;
             // 
-            // panel1
+            // panelActions
             // 
-            panel1.Location = new Point(142, 235);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(267, 203);
-            panel1.TabIndex = 1;
+            panelActions.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            panelActions.BackColor = Color.Gainsboro;
+            panelActions.Location = new Point(199, 452);
+            panelActions.Name = "panelActions";
+            panelActions.Size = new Size(420, 217);
+            panelActions.TabIndex = 1;
             // 
-            // panel2
+            // panelTables
             // 
-            panel2.Location = new Point(12, 12);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(124, 426);
-            panel2.TabIndex = 2;
+            panelTables.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            panelTables.AutoScroll = true;
+            panelTables.BackColor = Color.Gainsboro;
+            panelTables.FlowDirection = FlowDirection.TopDown;
+            panelTables.Location = new Point(12, 54);
+            panelTables.Name = "panelTables";
+            panelTables.Size = new Size(181, 615);
+            panelTables.TabIndex = 5;
             // 
-            // panel3
+            // lblTables
             // 
-            panel3.Location = new Point(415, 12);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(373, 118);
-            panel3.TabIndex = 3;
+            lblTables.Font = new Font("Segoe UI", 18F, FontStyle.Bold);
+            lblTables.Location = new Point(12, 12);
+            lblTables.Name = "lblTables";
+            lblTables.Size = new Size(181, 39);
+            lblTables.TabIndex = 6;
+            lblTables.Text = "Stoly";
+            lblTables.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // panel4
+            // panelCategories
             // 
-            panel4.Location = new Point(415, 136);
-            panel4.Name = "panel4";
-            panel4.Size = new Size(373, 302);
-            panel4.TabIndex = 4;
+            panelCategories.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            panelCategories.BackColor = Color.Gainsboro;
+            panelCategories.Location = new Point(625, 12);
+            panelCategories.Name = "panelCategories";
+            panelCategories.Size = new Size(627, 172);
+            panelCategories.TabIndex = 7;
+            // 
+            // panelProducts
+            // 
+            panelProducts.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            panelProducts.BackColor = Color.Gainsboro;
+            panelProducts.Location = new Point(625, 190);
+            panelProducts.Name = "panelProducts";
+            panelProducts.Size = new Size(627, 479);
+            panelProducts.TabIndex = 8;
             // 
             // FormSales
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
-            Controls.Add(panel4);
-            Controls.Add(panel3);
-            Controls.Add(panel2);
-            Controls.Add(panel1);
-            Controls.Add(dataGridView1);
+            ClientSize = new Size(1264, 681);
+            Controls.Add(panelProducts);
+            Controls.Add(panelCategories);
+            Controls.Add(lblTables);
+            Controls.Add(panelTables);
+            Controls.Add(panelActions);
+            Controls.Add(dgvOrder);
             Name = "FormSales";
             Text = "Obsluha";
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvOrder).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
 
-        private DataGridView dataGridView1;
-        private Panel panel1;
-        private Panel panel2;
-        private Panel panel3;
-        private Panel panel4;
+        private DataGridView dgvOrder;
+        private Panel panelActions;
+        private FlowLayoutPanel panelTables;
+        private Label lblTables;
+        private FlowLayoutPanel panelCategories;
+        private FlowLayoutPanel panelProducts;
     }
 }

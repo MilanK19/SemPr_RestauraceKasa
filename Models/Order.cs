@@ -9,7 +9,7 @@ namespace RestauraceKasa.Models
         public int Id { get; set; }
         public int TableNumber { get; set; }
         public List<Product> Items { get; set; } = new List<Product>();
-        public DateTime CreatedAt   { get; set; }
+        public DateTime CreatedAt { get; set; }
         public bool isPaid { get; set; }
 
         public decimal TotalPrice
@@ -24,5 +24,16 @@ namespace RestauraceKasa.Models
                 return total;
             }
         }
+
+        public Order(int tableNumber)
+        {
+            this.TableNumber = tableNumber;
+        }
+
+        public Order() { }
+
+
     }
+
+   
 }

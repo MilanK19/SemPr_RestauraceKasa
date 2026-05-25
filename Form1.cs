@@ -8,6 +8,7 @@ namespace RestauraceKasa
         private List<Product> _products = new List<Product>();
         private List<RestaurantTable> _tables = new List<RestaurantTable>();
         private List<string> _categories = new List<string>();
+        private List<Order> _orders = new List<Order>();
 
         public Form1()
         {
@@ -16,6 +17,7 @@ namespace RestauraceKasa
             _products = DataManager.LoadData<Product>("products.json");
             _tables = DataManager.LoadData<RestaurantTable>("tables.json");
             _categories = DataManager.LoadData<string>("categories.json");
+            _orders = DataManager.LoadData<Order>("orders.json");
 
         }
 
@@ -28,13 +30,16 @@ namespace RestauraceKasa
             DataManager.SaveData(_products, "products.json");
             DataManager.SaveData(_tables, "tables.json");
             DataManager.SaveData(_categories, "categories.json");
+            DataManager.SaveData(_orders, "orders.json");
 
         }
 
         private void BtnSales_Click(object sender, EventArgs e)
         {
-            FormSales salesWindow = new FormSales();
+            FormSales salesWindow = new FormSales(_products, _tables, _categories);
             salesWindow.ShowDialog();
+
+            DataManager.SaveData(_orders, "orders.json");
         }
 
 
@@ -44,6 +49,7 @@ namespace RestauraceKasa
             DataManager.SaveData(_products, "products.json");
             DataManager.SaveData(_tables, "tables.json");
             DataManager.SaveData(_categories, "categories.json");
+            DataManager.SaveData(_orders, "orders.json");
         }
 
 
