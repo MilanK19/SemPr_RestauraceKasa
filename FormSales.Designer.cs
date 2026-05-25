@@ -30,11 +30,14 @@
         {
             dgvOrder = new DataGridView();
             panelActions = new Panel();
+            btnDeleteSelected = new Button();
+            btnSaveOrder = new Button();
             panelTables = new FlowLayoutPanel();
             lblTables = new Label();
             panelCategories = new FlowLayoutPanel();
             panelProducts = new FlowLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)dgvOrder).BeginInit();
+            panelActions.SuspendLayout();
             SuspendLayout();
             // 
             // dgvOrder
@@ -48,17 +51,49 @@
             dgvOrder.MultiSelect = false;
             dgvOrder.Name = "dgvOrder";
             dgvOrder.ReadOnly = true;
-            dgvOrder.Size = new Size(420, 434);
+            dgvOrder.Size = new Size(420, 512);
             dgvOrder.TabIndex = 0;
             // 
             // panelActions
             // 
             panelActions.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             panelActions.BackColor = Color.Gainsboro;
-            panelActions.Location = new Point(199, 452);
+            panelActions.Controls.Add(btnDeleteSelected);
+            panelActions.Controls.Add(btnSaveOrder);
+            panelActions.Location = new Point(199, 530);
             panelActions.Name = "panelActions";
-            panelActions.Size = new Size(420, 217);
+            panelActions.Size = new Size(420, 139);
             panelActions.TabIndex = 1;
+            // 
+            // btnDeleteSelected
+            // 
+            btnDeleteSelected.BackColor = Color.PaleVioletRed;
+            btnDeleteSelected.FlatAppearance.BorderColor = Color.White;
+            btnDeleteSelected.FlatStyle = FlatStyle.Flat;
+            btnDeleteSelected.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            btnDeleteSelected.Location = new Point(317, 5);
+            btnDeleteSelected.Margin = new Padding(5);
+            btnDeleteSelected.Name = "btnDeleteSelected";
+            btnDeleteSelected.Size = new Size(98, 56);
+            btnDeleteSelected.TabIndex = 1;
+            btnDeleteSelected.Text = "SMAZAT VYBRANÉ";
+            btnDeleteSelected.UseVisualStyleBackColor = false;
+            btnDeleteSelected.Click += btnDeleteSelected_Click;
+            // 
+            // btnSaveOrder
+            // 
+            btnSaveOrder.BackColor = Color.Chartreuse;
+            btnSaveOrder.FlatAppearance.BorderColor = Color.White;
+            btnSaveOrder.FlatStyle = FlatStyle.Flat;
+            btnSaveOrder.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            btnSaveOrder.Location = new Point(317, 71);
+            btnSaveOrder.Margin = new Padding(5);
+            btnSaveOrder.Name = "btnSaveOrder";
+            btnSaveOrder.Size = new Size(98, 56);
+            btnSaveOrder.TabIndex = 0;
+            btnSaveOrder.Text = "ULOŽIT";
+            btnSaveOrder.UseVisualStyleBackColor = false;
+            btnSaveOrder.Click += BtnSaveOrder_Click;
             // 
             // panelTables
             // 
@@ -113,6 +148,7 @@
             Name = "FormSales";
             Text = "Obsluha";
             ((System.ComponentModel.ISupportInitialize)dgvOrder).EndInit();
+            panelActions.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -124,5 +160,7 @@
         private Label lblTables;
         private FlowLayoutPanel panelCategories;
         private FlowLayoutPanel panelProducts;
+        private Button btnSaveOrder;
+        private Button btnDeleteSelected;
     }
 }

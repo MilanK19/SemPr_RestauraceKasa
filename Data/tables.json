@@ -4,10 +4,89 @@
     "CurrentOrder": {
       "Id": 0,
       "TableNumber": 0,
-      "Items": [],
+      "Items": [
+        {
+          "Id": 0,
+          "Name": "\u0158\u00EDzek",
+          "Category": "",
+          "Price": 195
+        },
+        {
+          "Id": 0,
+          "Name": "\u0158\u00EDzek",
+          "Category": "",
+          "Price": 195
+        },
+        {
+          "Id": 0,
+          "Name": "Sma\u017E\u00E1k",
+          "Category": "",
+          "Price": 195
+        },
+        {
+          "Id": 0,
+          "Name": "Coca-Cola",
+          "Category": "",
+          "Price": 50
+        },
+        {
+          "Id": 0,
+          "Name": "Coca-Cola",
+          "Category": "",
+          "Price": 50
+        },
+        {
+          "Id": 0,
+          "Name": "Coca-Cola",
+          "Category": "",
+          "Price": 50
+        },
+        {
+          "Id": 0,
+          "Name": "\u0158\u00EDzek",
+          "Category": "",
+          "Price": 195
+        },
+        {
+          "Id": 0,
+          "Name": "\u0158\u00EDzek",
+          "Category": "",
+          "Price": 195
+        },
+        {
+          "Id": 0,
+          "Name": "Sma\u017E\u00E1k",
+          "Category": "",
+          "Price": 195
+        },
+        {
+          "Id": 0,
+          "Name": "Coca-Cola",
+          "Category": "",
+          "Price": 50
+        },
+        {
+          "Id": 0,
+          "Name": "Coca-Cola",
+          "Category": "",
+          "Price": 50
+        },
+        {
+          "Id": 0,
+          "Name": "Coca-Cola",
+          "Category": "",
+          "Price": 50
+        },
+        {
+          "Id": 0,
+          "Name": "V\u00FDvar",
+          "Category": "",
+          "Price": 40
+        }
+      ],
       "CreatedAt": "0001-01-01T00:00:00",
       "isPaid": false,
-      "TotalPrice": 0
+      "TotalPrice": 1510
     },
     "IsOccupied": false
   },
@@ -16,10 +95,59 @@
     "CurrentOrder": {
       "Id": 0,
       "TableNumber": 0,
-      "Items": [],
+      "Items": [
+        {
+          "Id": 0,
+          "Name": "Coca-Cola",
+          "Category": "",
+          "Price": 50
+        },
+        {
+          "Id": 0,
+          "Name": "Coca-Cola",
+          "Category": "",
+          "Price": 50
+        },
+        {
+          "Id": 0,
+          "Name": "Coca-Cola",
+          "Category": "",
+          "Price": 50
+        },
+        {
+          "Id": 0,
+          "Name": "Coca-Cola",
+          "Category": "",
+          "Price": 50
+        },
+        {
+          "Id": 0,
+          "Name": "Coca-Cola",
+          "Category": "",
+          "Price": 50
+        },
+        {
+          "Id": 0,
+          "Name": "Coca-Cola",
+          "Category": "",
+          "Price": 50
+        },
+        {
+          "Id": 0,
+          "Name": "V\u00FDvar",
+          "Category": "",
+          "Price": 40
+        },
+        {
+          "Id": 0,
+          "Name": "\u0158\u00EDzek",
+          "Category": "",
+          "Price": 195
+        }
+      ],
       "CreatedAt": "0001-01-01T00:00:00",
       "isPaid": false,
-      "TotalPrice": 0
+      "TotalPrice": 535
     },
     "IsOccupied": false
   },

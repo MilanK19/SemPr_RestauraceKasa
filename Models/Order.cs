@@ -8,9 +8,9 @@ namespace RestauraceKasa.Models
     {
         public int Id { get; set; }
         public int TableNumber { get; set; }
-        public List<Product> Items { get; set; } = new List<Product>();
+        public List<Product> Items { get; set; } //= new List<Product>();
         public DateTime CreatedAt { get; set; }
-        public bool isPaid { get; set; }
+        public bool isPaid { get; set; } //nejspíše nepotřebné (odstranit)
 
         public decimal TotalPrice
         {
@@ -28,9 +28,13 @@ namespace RestauraceKasa.Models
         public Order(int tableNumber)
         {
             this.TableNumber = tableNumber;
+            this.Items = new List<Product>();
         }
 
-        public Order() { }
+        public Order() 
+        {
+            this.Items = new List<Product>();
+        }
 
 
     }
