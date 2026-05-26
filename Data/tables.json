@@ -13,30 +13,6 @@
         },
         {
           "Id": 0,
-          "Name": "\u0158\u00EDzek",
-          "Category": "",
-          "Price": 195
-        },
-        {
-          "Id": 0,
-          "Name": "Sma\u017E\u00E1k",
-          "Category": "",
-          "Price": 195
-        },
-        {
-          "Id": 0,
-          "Name": "Coca-Cola",
-          "Category": "",
-          "Price": 50
-        },
-        {
-          "Id": 0,
-          "Name": "Coca-Cola",
-          "Category": "",
-          "Price": 50
-        },
-        {
-          "Id": 0,
           "Name": "Coca-Cola",
           "Category": "",
           "Price": 50
@@ -46,47 +22,11 @@
           "Name": "\u0158\u00EDzek",
           "Category": "",
           "Price": 195
-        },
-        {
-          "Id": 0,
-          "Name": "\u0158\u00EDzek",
-          "Category": "",
-          "Price": 195
-        },
-        {
-          "Id": 0,
-          "Name": "Sma\u017E\u00E1k",
-          "Category": "",
-          "Price": 195
-        },
-        {
-          "Id": 0,
-          "Name": "Coca-Cola",
-          "Category": "",
-          "Price": 50
-        },
-        {
-          "Id": 0,
-          "Name": "Coca-Cola",
-          "Category": "",
-          "Price": 50
-        },
-        {
-          "Id": 0,
-          "Name": "Coca-Cola",
-          "Category": "",
-          "Price": 50
-        },
-        {
-          "Id": 0,
-          "Name": "V\u00FDvar",
-          "Category": "",
-          "Price": 40
         }
       ],
       "CreatedAt": "0001-01-01T00:00:00",
       "isPaid": false,
-      "TotalPrice": 1510
+      "TotalPrice": 440
     },
     "IsOccupied": false
   },
@@ -116,38 +56,20 @@
         },
         {
           "Id": 0,
-          "Name": "Coca-Cola",
-          "Category": "",
-          "Price": 50
-        },
-        {
-          "Id": 0,
-          "Name": "Coca-Cola",
-          "Category": "",
-          "Price": 50
-        },
-        {
-          "Id": 0,
-          "Name": "Coca-Cola",
-          "Category": "",
-          "Price": 50
-        },
-        {
-          "Id": 0,
-          "Name": "V\u00FDvar",
-          "Category": "",
-          "Price": 40
-        },
-        {
-          "Id": 0,
           "Name": "\u0158\u00EDzek",
           "Category": "",
           "Price": 195
+        },
+        {
+          "Id": 0,
+          "Name": "Coca-Cola",
+          "Category": "",
+          "Price": 50
         }
       ],
       "CreatedAt": "0001-01-01T00:00:00",
       "isPaid": false,
-      "TotalPrice": 535
+      "TotalPrice": 395
     },
     "IsOccupied": false
   },

@@ -179,7 +179,11 @@ namespace RestauraceKasa
 
             foreach (Product product in table.CurrentOrder.Items)
             {
-                dgvOrder.Rows.Add(product.Name, product.Price);
+                int rowIndex = dgvOrder.Rows.Add(product.Name, product.Price);
+
+                // 2. Tomuto konkrétnímu řádku nastavíme šedé pozadí
+                dgvOrder.Rows[rowIndex].DefaultCellStyle.BackColor = Color.LightGray;
+
             }
 
             CurrentlyOpenTable = table;
@@ -197,25 +201,36 @@ namespace RestauraceKasa
         private void BtnSaveOrder_Click(object sender, EventArgs e)
         {
 
-            CurrentlyOpenTable.CurrentOrder.Items.Clear();
+            List<Product> approvedItems = new List<Product>();
 
             foreach (DataGridViewRow row in dgvOrder.Rows)
             {
                 if (row.IsNewRow) continue;
                 if (row.Cells["nameColumn"].Value == null) continue;
 
-                if (row.Cells["nameColumn"].Value != null)
+                string name = Convert.ToString(row.Cells["nameColumn"].Value);
+                decimal price = Convert.ToDecimal(row.Cells["priceColumn"].Value);
+
+                if (row.Tag is string tag && tag == "toDelete")
                 {
+                    // TODO: Zde v budoucnu zavoláte tiskárnu: TiskniStornoLístek(name);
 
-                    string name = Convert.ToString(row.Cells["nameColumn"].Value);
-                    decimal price = Convert.ToDecimal(row.Cells["priceColumn"].Value);
-
-                    Product newProduct = new Product { Name = name, Price = price };
-                    CurrentlyOpenTable.CurrentOrder.Items.Add(newProduct);
-
-
+                    // V paměti (CurrentlyOpenTable) tento produkt nechceme, takže ho ignorujeme
+                    continue;
                 }
+
+                // Pokud řádek smazaný nebyl, uložíme ho do schválených
+                Product product = new Product { Name = name, Price = price };
+                approvedItems.Add(product);
+                
+
+                // TODO: Zde v budoucnu zavoláte tiskárnu: TiskniDoKuchyneLístek(name);
             }
+
+            CurrentlyOpenTable.CurrentOrder.Items = approvedItems;
+
+            OpenTableOrder(CurrentlyOpenTable);
+
 
 
 
@@ -225,14 +240,44 @@ namespace RestauraceKasa
 
             //TODO: přidat logiku pro zobrazení celkové ceny objednávky
 
-            //TODO: přidat logiku pro zobrazení možnosti platby a dokončení objednávky
+            //TODO: přidat logiku pro zobrazení možnosti platby a dokončení objednávky -> button platba, vyskoří nové okno pro výběr způsobu platby, smaže se aktuální objednávku a označí stůl jako volný
 
             //TODO: přidat logiku pro zobrazení možnosti zobrazení historie objednávek pro každý stůl -> bude v administraci(form)
+
         }
+
+
+
+
 
         private void btnDeleteSelected_Click(object sender, EventArgs e)
         {
-            //TODO: přidat logiku pro odstranění vybraného produktu z objednávky (odstraní řádek z dgvOrder a aktualizuje celkovou cenu)
+
+            if(dgvOrder.CurrentRow != null)
+            {
+                DataGridViewRow row = dgvOrder.CurrentRow;
+
+                if(row.DefaultCellStyle.BackColor == Color.LightGray)
+                {
+                    row.DefaultCellStyle.Font = new Font(dgvOrder.Font, FontStyle.Strikeout);
+                    row.DefaultCellStyle.ForeColor = Color.DarkRed;
+                    row.DefaultCellStyle.SelectionForeColor = Color.DarkRed;
+                    row.DefaultCellStyle.BackColor = Color.LightPink;
+
+                    row.Tag = "toDelete";
+                }
+                else
+                {
+                    dgvOrder.Rows.Remove(row);
+                }
+                
+
+            }
+            else
+            {
+                MessageBox.Show("Vyberte v tabulce řádek, který chcete smazat.", "Upozornění", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+
         }
     }
 }
