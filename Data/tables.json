@@ -4,74 +4,22 @@
     "CurrentOrder": {
       "Id": 0,
       "TableNumber": 0,
-      "Items": [
-        {
-          "Id": 0,
-          "Name": "\u0158\u00EDzek",
-          "Category": "",
-          "Price": 195
-        },
-        {
-          "Id": 0,
-          "Name": "Coca-Cola",
-          "Category": "",
-          "Price": 50
-        },
-        {
-          "Id": 0,
-          "Name": "\u0158\u00EDzek",
-          "Category": "",
-          "Price": 195
-        }
-      ],
+      "Items": [],
       "CreatedAt": "0001-01-01T00:00:00",
       "isPaid": false,
-      "TotalPrice": 440
-    },
-    "IsOccupied": false
+      "TotalPrice": 0
+    }
   },
   {
     "TableNumber": 12,
     "CurrentOrder": {
       "Id": 0,
       "TableNumber": 0,
-      "Items": [
-        {
-          "Id": 0,
-          "Name": "Coca-Cola",
-          "Category": "",
-          "Price": 50
-        },
-        {
-          "Id": 0,
-          "Name": "Coca-Cola",
-          "Category": "",
-          "Price": 50
-        },
-        {
-          "Id": 0,
-          "Name": "Coca-Cola",
-          "Category": "",
-          "Price": 50
-        },
-        {
-          "Id": 0,
-          "Name": "\u0158\u00EDzek",
-          "Category": "",
-          "Price": 195
-        },
-        {
-          "Id": 0,
-          "Name": "Coca-Cola",
-          "Category": "",
-          "Price": 50
-        }
-      ],
+      "Items": [],
       "CreatedAt": "0001-01-01T00:00:00",
       "isPaid": false,
-      "TotalPrice": 395
-    },
-    "IsOccupied": false
+      "TotalPrice": 0
+    }
   },
   {
     "TableNumber": 13,
@@ -82,8 +30,7 @@
       "CreatedAt": "0001-01-01T00:00:00",
       "isPaid": false,
       "TotalPrice": 0
-    },
-    "IsOccupied": false
+    }
   },
   {
     "TableNumber": 21,
@@ -94,8 +41,7 @@
       "CreatedAt": "0001-01-01T00:00:00",
       "isPaid": false,
       "TotalPrice": 0
-    },
-    "IsOccupied": false
+    }
   },
   {
     "TableNumber": 22,
@@ -106,8 +52,7 @@
       "CreatedAt": "0001-01-01T00:00:00",
       "isPaid": false,
       "TotalPrice": 0
-    },
-    "IsOccupied": false
+    }
   },
   {
     "TableNumber": 23,
@@ -118,7 +63,6 @@
       "CreatedAt": "0001-01-01T00:00:00",
       "isPaid": false,
       "TotalPrice": 0
-    },
-    "IsOccupied": false
+    }
   }
 ]

@@ -30,6 +30,8 @@
         {
             dgvOrder = new DataGridView();
             panelActions = new Panel();
+            txtTotalPrice = new TextBox();
+            btnPayment = new Button();
             btnDeleteSelected = new Button();
             btnSaveOrder = new Button();
             panelTables = new FlowLayoutPanel();
@@ -58,12 +60,43 @@
             // 
             panelActions.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             panelActions.BackColor = Color.Gainsboro;
+            panelActions.Controls.Add(txtTotalPrice);
+            panelActions.Controls.Add(btnPayment);
             panelActions.Controls.Add(btnDeleteSelected);
             panelActions.Controls.Add(btnSaveOrder);
             panelActions.Location = new Point(199, 530);
             panelActions.Name = "panelActions";
             panelActions.Size = new Size(420, 139);
             panelActions.TabIndex = 1;
+            // 
+            // txtTotalPrice
+            // 
+            txtTotalPrice.BackColor = Color.Khaki;
+            txtTotalPrice.BorderStyle = BorderStyle.FixedSingle;
+            txtTotalPrice.CausesValidation = false;
+            txtTotalPrice.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            txtTotalPrice.ForeColor = Color.Red;
+            txtTotalPrice.Location = new Point(134, 21);
+            txtTotalPrice.Name = "txtTotalPrice";
+            txtTotalPrice.ReadOnly = true;
+            txtTotalPrice.Size = new Size(98, 29);
+            txtTotalPrice.TabIndex = 3;
+            txtTotalPrice.TabStop = false;
+            // 
+            // btnPayment
+            // 
+            btnPayment.BackColor = Color.MediumTurquoise;
+            btnPayment.FlatAppearance.BorderColor = Color.White;
+            btnPayment.FlatStyle = FlatStyle.Flat;
+            btnPayment.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            btnPayment.Location = new Point(134, 71);
+            btnPayment.Margin = new Padding(5);
+            btnPayment.Name = "btnPayment";
+            btnPayment.Size = new Size(98, 56);
+            btnPayment.TabIndex = 2;
+            btnPayment.Text = "PLATBA";
+            btnPayment.UseVisualStyleBackColor = false;
+            btnPayment.Click += BtnPayment_Click;
             // 
             // btnDeleteSelected
             // 
@@ -78,7 +111,7 @@
             btnDeleteSelected.TabIndex = 1;
             btnDeleteSelected.Text = "SMAZAT VYBRANÉ";
             btnDeleteSelected.UseVisualStyleBackColor = false;
-            btnDeleteSelected.Click += btnDeleteSelected_Click;
+            btnDeleteSelected.Click += BtnDeleteSelected_Click;
             // 
             // btnSaveOrder
             // 
@@ -149,6 +182,7 @@
             Text = "Obsluha";
             ((System.ComponentModel.ISupportInitialize)dgvOrder).EndInit();
             panelActions.ResumeLayout(false);
+            panelActions.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -162,5 +196,7 @@
         private FlowLayoutPanel panelProducts;
         private Button btnSaveOrder;
         private Button btnDeleteSelected;
+        private Button btnPayment;
+        private TextBox txtTotalPrice;
     }
 }

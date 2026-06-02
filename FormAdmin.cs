@@ -14,23 +14,25 @@ namespace RestauraceKasa
         private BindingList<Product> _productsBinding;
         private BindingList<RestaurantTable> _tablesBinding;
         private BindingList<string> _categoriesBinding;
+        private BindingList<ArchivedOrder> _archivedOrders;
 
-      
 
 
-        public FormAdmin(List<Product> products, List<RestaurantTable> tables, List<string> categories)
+        public FormAdmin(List<Product> products, List<RestaurantTable> tables, List<string> categories, List<ArchivedOrder> archivedOrders)
         {
             InitializeComponent();
 
             _productsBinding = new BindingList<Product>(products);
             _tablesBinding = new BindingList<RestaurantTable>(tables);
             _categoriesBinding = new BindingList<string>(categories);
+            _archivedOrders = new BindingList<ArchivedOrder>(archivedOrders);
 
             dgvProducts.DataSource = _productsBinding;
             dgvTables.DataSource = _tablesBinding;
+            dgvArchivedOrders.DataSource = _archivedOrders;
             lbCategories.DataSource = _categoriesBinding;
             cmbCategory.DataSource = _categoriesBinding;
-            
+
         }
 
         private void BtnAddProduct_Click(object sender, EventArgs e)
@@ -57,7 +59,7 @@ namespace RestauraceKasa
 
         private void BtnDeleteProduct_Click(object sender, EventArgs e)
         {
-            if(dgvProducts.CurrentRow != null)
+            if (dgvProducts.CurrentRow != null)
             {
                 var productToDelete = (Product)dgvProducts.CurrentRow.DataBoundItem;
                 _productsBinding.Remove(productToDelete);
@@ -70,7 +72,7 @@ namespace RestauraceKasa
 
         private void DgvProducts_SelectionChanged(object sender, EventArgs e)
         {
-            if(dgvProducts.CurrentRow != null)
+            if (dgvProducts.CurrentRow != null)
             {
                 var selectedProduct = (Product)dgvProducts.CurrentRow.DataBoundItem;
 
@@ -106,8 +108,7 @@ namespace RestauraceKasa
 
             var newTable = new RestaurantTable()
             {
-                TableNumber = (int)numTableNumber.Value,
-                IsOccupied = false
+                TableNumber = (int)numTableNumber.Value
             };
 
             _tablesBinding.Add(newTable);
@@ -165,7 +166,7 @@ namespace RestauraceKasa
 
         }
 
-        private void BtnDeleteCategory_Click(object  obj, EventArgs e)
+        private void BtnDeleteCategory_Click(object obj, EventArgs e)
         {
             if (lbCategories.SelectedItem != null)
             {
@@ -199,6 +200,14 @@ namespace RestauraceKasa
             }
         }
 
-           
+        private void DgvArchivedOrders_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dgvArchivedOrders.CurrentRow != null)
+            {
+                var selectedOrder = (ArchivedOrder)dgvArchivedOrders.CurrentRow.DataBoundItem;
+
+                dgvArcivedOrderProducts.DataSource = selectedOrder.Items;
+            }
+        }
     }
 }

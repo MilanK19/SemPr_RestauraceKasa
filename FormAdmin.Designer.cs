@@ -42,6 +42,11 @@
             labelName = new Label();
             txtProductName = new TextBox();
             dgvProducts = new DataGridView();
+            idDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            nameDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            categoryDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            priceDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            productBindingSource = new BindingSource(components);
             tabTables = new TabPage();
             panel2 = new Panel();
             btnUpdateTable = new Button();
@@ -62,16 +67,24 @@
             btnAddCategory = new Button();
             labelEditCategory = new Label();
             txtCategory = new TextBox();
-            productBindingSource = new BindingSource(components);
-            idDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            nameDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            categoryDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            priceDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            tabPaymentHistory = new TabPage();
+            dgvArcivedOrderProducts = new DataGridView();
+            dgvArchivedOrders = new DataGridView();
+            tableNumberDataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
+            paymentTimeDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            paymentMethodDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            totalPriceDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            archivedOrderBindingSource = new BindingSource(components);
+            idDataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
+            nameDataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
+            categoryDataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
+            priceDataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
             tabControl1.SuspendLayout();
             tabMenu.SuspendLayout();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)numProductPrice).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvProducts).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)productBindingSource).BeginInit();
             tabTables.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)numTableNumber).BeginInit();
@@ -79,7 +92,10 @@
             ((System.ComponentModel.ISupportInitialize)restaurantTableBindingSource).BeginInit();
             tabCategory.SuspendLayout();
             panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)productBindingSource).BeginInit();
+            tabPaymentHistory.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvArcivedOrderProducts).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvArchivedOrders).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)archivedOrderBindingSource).BeginInit();
             SuspendLayout();
             // 
             // tabControl1
@@ -87,6 +103,7 @@
             tabControl1.Controls.Add(tabMenu);
             tabControl1.Controls.Add(tabTables);
             tabControl1.Controls.Add(tabCategory);
+            tabControl1.Controls.Add(tabPaymentHistory);
             tabControl1.Location = new Point(12, 12);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
@@ -211,6 +228,7 @@
             dgvProducts.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvProducts.Columns.AddRange(new DataGridViewColumn[] { idDataGridViewTextBoxColumn, nameDataGridViewTextBoxColumn, categoryDataGridViewTextBoxColumn, priceDataGridViewTextBoxColumn });
             dgvProducts.DataSource = productBindingSource;
+            dgvProducts.EditMode = DataGridViewEditMode.EditProgrammatically;
             dgvProducts.Location = new Point(6, 6);
             dgvProducts.MultiSelect = false;
             dgvProducts.Name = "dgvProducts";
@@ -219,6 +237,38 @@
             dgvProducts.Size = new Size(440, 386);
             dgvProducts.TabIndex = 0;
             dgvProducts.SelectionChanged += DgvProducts_SelectionChanged;
+            // 
+            // idDataGridViewTextBoxColumn
+            // 
+            idDataGridViewTextBoxColumn.DataPropertyName = "Id";
+            idDataGridViewTextBoxColumn.HeaderText = "Id";
+            idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            idDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            nameDataGridViewTextBoxColumn.HeaderText = "Název";
+            nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            nameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // categoryDataGridViewTextBoxColumn
+            // 
+            categoryDataGridViewTextBoxColumn.DataPropertyName = "Category";
+            categoryDataGridViewTextBoxColumn.HeaderText = "Kategorie";
+            categoryDataGridViewTextBoxColumn.Name = "categoryDataGridViewTextBoxColumn";
+            categoryDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // priceDataGridViewTextBoxColumn
+            // 
+            priceDataGridViewTextBoxColumn.DataPropertyName = "Price";
+            priceDataGridViewTextBoxColumn.HeaderText = "Cena";
+            priceDataGridViewTextBoxColumn.Name = "priceDataGridViewTextBoxColumn";
+            priceDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // productBindingSource
+            // 
+            productBindingSource.DataSource = typeof(Models.Product);
             // 
             // tabTables
             // 
@@ -415,37 +465,110 @@
             txtCategory.Size = new Size(111, 23);
             txtCategory.TabIndex = 0;
             // 
-            // productBindingSource
+            // tabPaymentHistory
             // 
-            productBindingSource.DataSource = typeof(Models.Product);
+            tabPaymentHistory.Controls.Add(dgvArcivedOrderProducts);
+            tabPaymentHistory.Controls.Add(dgvArchivedOrders);
+            tabPaymentHistory.Location = new Point(4, 24);
+            tabPaymentHistory.Name = "tabPaymentHistory";
+            tabPaymentHistory.Padding = new Padding(3);
+            tabPaymentHistory.Size = new Size(768, 398);
+            tabPaymentHistory.TabIndex = 3;
+            tabPaymentHistory.Text = "Historie plateb";
+            tabPaymentHistory.UseVisualStyleBackColor = true;
             // 
-            // idDataGridViewTextBoxColumn
+            // dgvArcivedOrderProducts
             // 
-            idDataGridViewTextBoxColumn.DataPropertyName = "Id";
-            idDataGridViewTextBoxColumn.HeaderText = "Id";
-            idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            idDataGridViewTextBoxColumn.ReadOnly = true;
+            dgvArcivedOrderProducts.AllowUserToAddRows = false;
+            dgvArcivedOrderProducts.AllowUserToDeleteRows = false;
+            dgvArcivedOrderProducts.AllowUserToOrderColumns = true;
+            dgvArcivedOrderProducts.AutoGenerateColumns = false;
+            dgvArcivedOrderProducts.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvArcivedOrderProducts.Columns.AddRange(new DataGridViewColumn[] { idDataGridViewTextBoxColumn1, nameDataGridViewTextBoxColumn1, categoryDataGridViewTextBoxColumn1, priceDataGridViewTextBoxColumn1 });
+            dgvArcivedOrderProducts.DataSource = productBindingSource;
+            dgvArcivedOrderProducts.Location = new Point(457, 6);
+            dgvArcivedOrderProducts.Name = "dgvArcivedOrderProducts";
+            dgvArcivedOrderProducts.ReadOnly = true;
+            dgvArcivedOrderProducts.Size = new Size(305, 386);
+            dgvArcivedOrderProducts.TabIndex = 1;
             // 
-            // nameDataGridViewTextBoxColumn
+            // dgvArchivedOrders
             // 
-            nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
-            nameDataGridViewTextBoxColumn.HeaderText = "Název";
-            nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            nameDataGridViewTextBoxColumn.ReadOnly = true;
+            dgvArchivedOrders.AllowUserToAddRows = false;
+            dgvArchivedOrders.AllowUserToDeleteRows = false;
+            dgvArchivedOrders.AllowUserToOrderColumns = true;
+            dgvArchivedOrders.AutoGenerateColumns = false;
+            dgvArchivedOrders.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvArchivedOrders.Columns.AddRange(new DataGridViewColumn[] { tableNumberDataGridViewTextBoxColumn1, paymentTimeDataGridViewTextBoxColumn, paymentMethodDataGridViewTextBoxColumn, totalPriceDataGridViewTextBoxColumn });
+            dgvArchivedOrders.DataSource = archivedOrderBindingSource;
+            dgvArchivedOrders.Location = new Point(6, 6);
+            dgvArchivedOrders.Name = "dgvArchivedOrders";
+            dgvArchivedOrders.ReadOnly = true;
+            dgvArchivedOrders.Size = new Size(445, 386);
+            dgvArchivedOrders.TabIndex = 0;
+            dgvArchivedOrders.SelectionChanged += DgvArchivedOrders_SelectionChanged;
             // 
-            // categoryDataGridViewTextBoxColumn
+            // tableNumberDataGridViewTextBoxColumn1
             // 
-            categoryDataGridViewTextBoxColumn.DataPropertyName = "Category";
-            categoryDataGridViewTextBoxColumn.HeaderText = "Kategorie";
-            categoryDataGridViewTextBoxColumn.Name = "categoryDataGridViewTextBoxColumn";
-            categoryDataGridViewTextBoxColumn.ReadOnly = true;
+            tableNumberDataGridViewTextBoxColumn1.DataPropertyName = "TableNumber";
+            tableNumberDataGridViewTextBoxColumn1.HeaderText = "TableNumber";
+            tableNumberDataGridViewTextBoxColumn1.Name = "tableNumberDataGridViewTextBoxColumn1";
+            tableNumberDataGridViewTextBoxColumn1.ReadOnly = true;
             // 
-            // priceDataGridViewTextBoxColumn
+            // paymentTimeDataGridViewTextBoxColumn
             // 
-            priceDataGridViewTextBoxColumn.DataPropertyName = "Price";
-            priceDataGridViewTextBoxColumn.HeaderText = "Cena";
-            priceDataGridViewTextBoxColumn.Name = "priceDataGridViewTextBoxColumn";
-            priceDataGridViewTextBoxColumn.ReadOnly = true;
+            paymentTimeDataGridViewTextBoxColumn.DataPropertyName = "PaymentTime";
+            paymentTimeDataGridViewTextBoxColumn.HeaderText = "PaymentTime";
+            paymentTimeDataGridViewTextBoxColumn.Name = "paymentTimeDataGridViewTextBoxColumn";
+            paymentTimeDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // paymentMethodDataGridViewTextBoxColumn
+            // 
+            paymentMethodDataGridViewTextBoxColumn.DataPropertyName = "PaymentMethod";
+            paymentMethodDataGridViewTextBoxColumn.HeaderText = "PaymentMethod";
+            paymentMethodDataGridViewTextBoxColumn.Name = "paymentMethodDataGridViewTextBoxColumn";
+            paymentMethodDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // totalPriceDataGridViewTextBoxColumn
+            // 
+            totalPriceDataGridViewTextBoxColumn.DataPropertyName = "TotalPrice";
+            totalPriceDataGridViewTextBoxColumn.HeaderText = "TotalPrice";
+            totalPriceDataGridViewTextBoxColumn.Name = "totalPriceDataGridViewTextBoxColumn";
+            totalPriceDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // archivedOrderBindingSource
+            // 
+            archivedOrderBindingSource.DataSource = typeof(Models.ArchivedOrder);
+            // 
+            // idDataGridViewTextBoxColumn1
+            // 
+            idDataGridViewTextBoxColumn1.DataPropertyName = "Id";
+            idDataGridViewTextBoxColumn1.HeaderText = "Id";
+            idDataGridViewTextBoxColumn1.Name = "idDataGridViewTextBoxColumn1";
+            idDataGridViewTextBoxColumn1.ReadOnly = true;
+            idDataGridViewTextBoxColumn1.Visible = false;
+            // 
+            // nameDataGridViewTextBoxColumn1
+            // 
+            nameDataGridViewTextBoxColumn1.DataPropertyName = "Name";
+            nameDataGridViewTextBoxColumn1.HeaderText = "Name";
+            nameDataGridViewTextBoxColumn1.Name = "nameDataGridViewTextBoxColumn1";
+            nameDataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // categoryDataGridViewTextBoxColumn1
+            // 
+            categoryDataGridViewTextBoxColumn1.DataPropertyName = "Category";
+            categoryDataGridViewTextBoxColumn1.HeaderText = "Category";
+            categoryDataGridViewTextBoxColumn1.Name = "categoryDataGridViewTextBoxColumn1";
+            categoryDataGridViewTextBoxColumn1.ReadOnly = true;
+            categoryDataGridViewTextBoxColumn1.Visible = false;
+            // 
+            // priceDataGridViewTextBoxColumn1
+            // 
+            priceDataGridViewTextBoxColumn1.DataPropertyName = "Price";
+            priceDataGridViewTextBoxColumn1.HeaderText = "Price";
+            priceDataGridViewTextBoxColumn1.Name = "priceDataGridViewTextBoxColumn1";
+            priceDataGridViewTextBoxColumn1.ReadOnly = true;
             // 
             // FormAdmin
             // 
@@ -461,6 +584,7 @@
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)numProductPrice).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgvProducts).EndInit();
+            ((System.ComponentModel.ISupportInitialize)productBindingSource).EndInit();
             tabTables.ResumeLayout(false);
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
@@ -470,7 +594,10 @@
             tabCategory.ResumeLayout(false);
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)productBindingSource).EndInit();
+            tabPaymentHistory.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dgvArcivedOrderProducts).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvArchivedOrders).EndInit();
+            ((System.ComponentModel.ISupportInitialize)archivedOrderBindingSource).EndInit();
             ResumeLayout(false);
         }
 
@@ -514,5 +641,17 @@
         private DataGridViewTextBoxColumn categoryDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn priceDataGridViewTextBoxColumn;
         private BindingSource productBindingSource;
+        private TabPage tabPaymentHistory;
+        private DataGridView dgvArchivedOrders;
+        private DataGridViewTextBoxColumn tableNumberDataGridViewTextBoxColumn1;
+        private DataGridViewTextBoxColumn paymentTimeDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn paymentMethodDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn totalPriceDataGridViewTextBoxColumn;
+        private BindingSource archivedOrderBindingSource;
+        private DataGridView dgvArcivedOrderProducts;
+        private DataGridViewTextBoxColumn idDataGridViewTextBoxColumn1;
+        private DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn1;
+        private DataGridViewTextBoxColumn categoryDataGridViewTextBoxColumn1;
+        private DataGridViewTextBoxColumn priceDataGridViewTextBoxColumn1;
     }
 }

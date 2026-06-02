@@ -16,6 +16,7 @@ namespace RestauraceKasa
         private List<Product> _products;
         private List<RestaurantTable> _tables;
         private List<string> _categories;
+        private List<ArchivedOrder> _archivedOrders;
 
         private Size btnTableSize = new Size(120, 60);
         private Padding btnTableMargin = new Padding(28, 10, 0, 10);
@@ -31,7 +32,7 @@ namespace RestauraceKasa
         private RestaurantTable CurrentlyOpenTable = new RestaurantTable();
 
 
-        public FormSales(List<Product> products, List<RestaurantTable> tables, List<string> categories)
+        public FormSales(List<Product> products, List<RestaurantTable> tables, List<string> categories, List<ArchivedOrder> archivedOrders)
         {
             InitializeComponent();
 
@@ -60,6 +61,7 @@ namespace RestauraceKasa
             this._products = products;
             this._tables = tables;
             this._categories = categories;
+            this._archivedOrders = archivedOrders;
 
             GenerateTableButtons();
             GenerateCategoryButtnos();
@@ -163,11 +165,11 @@ namespace RestauraceKasa
                 if (control is Button btn)
                 {
                     btn.FlatAppearance.BorderSize = 0;
-                   
+
                 }
             }
             selectedButton.FlatAppearance.BorderSize = 4;
-            
+
         }
 
 
@@ -180,14 +182,14 @@ namespace RestauraceKasa
             foreach (Product product in table.CurrentOrder.Items)
             {
                 int rowIndex = dgvOrder.Rows.Add(product.Name, product.Price);
-
-                // 2. Tomuto konkrétnímu řádku nastavíme šedé pozadí
                 dgvOrder.Rows[rowIndex].DefaultCellStyle.BackColor = Color.LightGray;
 
             }
 
             CurrentlyOpenTable = table;
-            
+
+            txtTotalPrice.Text = Convert.ToString(table.CurrentOrder.TotalPrice);
+
             dgvOrder.ResumeLayout();
 
         }
@@ -197,6 +199,7 @@ namespace RestauraceKasa
         {
             dgvOrder.Rows.Add(product.Name, product.Price);
         }
+
 
         private void BtnSaveOrder_Click(object sender, EventArgs e)
         {
@@ -222,7 +225,7 @@ namespace RestauraceKasa
                 // Pokud řádek smazaný nebyl, uložíme ho do schválených
                 Product product = new Product { Name = name, Price = price };
                 approvedItems.Add(product);
-                
+
 
                 // TODO: Zde v budoucnu zavoláte tiskárnu: TiskniDoKuchyneLístek(name);
             }
@@ -231,18 +234,16 @@ namespace RestauraceKasa
 
             OpenTableOrder(CurrentlyOpenTable);
 
+            foreach (Control control in panelTables.Controls)
+            {
+                // Najdeme tlačítko, které patří aktuálně uloženému stolu
+                if (control is Button btn && btn.Text == CurrentlyOpenTable.TableNumber.ToString())
+                {
+                    btn.BackColor = CurrentlyOpenTable.IsOccupied ? Color.Salmon : Color.LightGreen;
+                    break;
+                }
+            }
 
-
-
-            //TODO: označí stůl jako obsazený
-
-            //TODO: aktualizuje zobrazení tlačítek stolů, aby se změnila barva obsazených stolů
-
-            //TODO: přidat logiku pro zobrazení celkové ceny objednávky
-
-            //TODO: přidat logiku pro zobrazení možnosti platby a dokončení objednávky -> button platba, vyskoří nové okno pro výběr způsobu platby, smaže se aktuální objednávku a označí stůl jako volný
-
-            //TODO: přidat logiku pro zobrazení možnosti zobrazení historie objednávek pro každý stůl -> bude v administraci(form)
 
         }
 
@@ -250,14 +251,14 @@ namespace RestauraceKasa
 
 
 
-        private void btnDeleteSelected_Click(object sender, EventArgs e)
+        private void BtnDeleteSelected_Click(object sender, EventArgs e)
         {
 
-            if(dgvOrder.CurrentRow != null)
+            if (dgvOrder.CurrentRow != null)
             {
                 DataGridViewRow row = dgvOrder.CurrentRow;
 
-                if(row.DefaultCellStyle.BackColor == Color.LightGray)
+                if (row.DefaultCellStyle.BackColor == Color.LightGray)
                 {
                     row.DefaultCellStyle.Font = new Font(dgvOrder.Font, FontStyle.Strikeout);
                     row.DefaultCellStyle.ForeColor = Color.DarkRed;
@@ -270,7 +271,7 @@ namespace RestauraceKasa
                 {
                     dgvOrder.Rows.Remove(row);
                 }
-                
+
 
             }
             else
@@ -279,5 +280,93 @@ namespace RestauraceKasa
             }
 
         }
+
+        private void BtnPayment_Click(object sender, EventArgs e)
+        {
+            if (CurrentlyOpenTable == null || CurrentlyOpenTable.CurrentOrder.Items.Count == 0)
+            {
+                return;
+            }
+
+            decimal total = CurrentlyOpenTable.CurrentOrder.TotalPrice;
+
+           using (FormPaymentDialog paymentForm = new FormPaymentDialog(total))
+            {
+                DialogResult result = paymentForm.ShowDialog();
+
+                string paymentMethod = string.Empty;
+
+                if (result == DialogResult.Yes)
+                {
+                    paymentMethod = "Hotove";
+                }
+                else if (result == DialogResult.No)
+                {
+                    paymentMethod = "Kartou";
+                }
+                else
+                {
+                    return;
+                }
+
+                Payment(paymentMethod, total);
+            }
+
+
+
+        }
+
+
+        private void Payment(string paymentMethod, decimal total)
+        {
+            Console.WriteLine("========================================");
+            Console.WriteLine($"ÚČTENKA - STŮL ČÍSLO: {CurrentlyOpenTable.TableNumber}");
+            Console.WriteLine($"Datum: {DateTime.Now}");
+            Console.WriteLine("----------------------------------------");
+            foreach (Product p in CurrentlyOpenTable.CurrentOrder.Items)
+            {
+                Console.WriteLine($"{p.Name, -30} {p.Price, 0} Kč");
+            }
+            Console.WriteLine("----------------------------------------");
+            Console.WriteLine($"CELKEM: {total} Kč");
+            Console.WriteLine($"Placeno: {paymentMethod}");
+            Console.WriteLine("========================================");
+
+
+            ArchivedOrder archivedOrder = new ArchivedOrder
+            {
+                TableNumber = CurrentlyOpenTable.TableNumber,
+                PaymentTime = DateTime.Now,
+                PaymentMethod = paymentMethod,
+                TotalPrice = total,
+                Items = new List<Product>(CurrentlyOpenTable.CurrentOrder.Items)
+            };
+            _archivedOrders.Add(archivedOrder);
+
+            CurrentlyOpenTable.CurrentOrder.Items.Clear();
+
+            OpenTableOrder(CurrentlyOpenTable);
+
+            foreach (Control control in panelTables.Controls)
+            {
+                if (control is Button btn && btn.Text == CurrentlyOpenTable.TableNumber.ToString())
+                {
+                    btn.BackColor = Color.LightGreen;
+                    btn.FlatAppearance.BorderSize = 0;
+                    break;
+                }
+            }
+
+
+        }
+
+
+
+
+
+
+
+
+        
     }
 }

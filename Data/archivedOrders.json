@@ -1,0 +1,188 @@
+[
+  {
+    "TableNumber": 11,
+    "Items": [
+      {
+        "Id": 0,
+        "Name": "Coca-Cola",
+        "Category": "",
+        "Price": 50
+      },
+      {
+        "Id": 0,
+        "Name": "Coca-Cola",
+        "Category": "",
+        "Price": 50
+      },
+      {
+        "Id": 0,
+        "Name": "\u0158\u00EDzek",
+        "Category": "",
+        "Price": 195
+      },
+      {
+        "Id": 0,
+        "Name": "Sma\u017E\u00E1k",
+        "Category": "",
+        "Price": 195
+      }
+    ],
+    "PaymentTime": "2026-06-02T16:34:59.9909923+02:00",
+    "PaymentMethod": "Hotove",
+    "TotalPrice": 490
+  },
+  {
+    "TableNumber": 12,
+    "Items": [
+      {
+        "Id": 0,
+        "Name": "Coca-Cola",
+        "Category": "",
+        "Price": 50
+      },
+      {
+        "Id": 0,
+        "Name": "Coca-Cola",
+        "Category": "",
+        "Price": 50
+      },
+      {
+        "Id": 0,
+        "Name": "V\u00FDvar",
+        "Category": "",
+        "Price": 40
+      },
+      {
+        "Id": 0,
+        "Name": "\u0158\u00EDzek",
+        "Category": "",
+        "Price": 195
+      },
+      {
+        "Id": 0,
+        "Name": "Sma\u017E\u00E1k",
+        "Category": "",
+        "Price": 195
+      }
+    ],
+    "PaymentTime": "2026-06-02T16:35:26.0640918+02:00",
+    "PaymentMethod": "Kartou",
+    "TotalPrice": 530
+  },
+  {
+    "TableNumber": 21,
+    "Items": [
+      {
+        "Id": 0,
+        "Name": "Coca-Cola",
+        "Category": "",
+        "Price": 50
+      },
+      {
+        "Id": 0,
+        "Name": "Coca-Cola",
+        "Category": "",
+        "Price": 50
+      },
+      {
+        "Id": 0,
+        "Name": "\u0158\u00EDzek",
+        "Category": "",
+        "Price": 195
+      },
+      {
+        "Id": 0,
+        "Name": "Sma\u017E\u00E1k",
+        "Category": "",
+        "Price": 195
+      },
+      {
+        "Id": 0,
+        "Name": "Coca-Cola",
+        "Category": "",
+        "Price": 50
+      }
+    ],
+    "PaymentTime": "2026-06-02T16:35:41.2058057+02:00",
+    "PaymentMethod": "Hotove",
+    "TotalPrice": 540
+  },
+  {
+    "TableNumber": 11,
+    "Items": [
+      {
+        "Id": 0,
+        "Name": "Coca-Cola",
+        "Category": "",
+        "Price": 50
+      },
+      {
+        "Id": 0,
+        "Name": "Coca-Cola",
+        "Category": "",
+        "Price": 50
+      },
+      {
+        "Id": 0,
+        "Name": "Coca-Cola",
+        "Category": "",
+        "Price": 50
+      },
+      {
+        "Id": 0,
+        "Name": "Coca-Cola",
+        "Category": "",
+        "Price": 50
+      }
+    ],
+    "PaymentTime": "2026-06-02T16:57:07.8099111+02:00",
+    "PaymentMethod": "Kartou",
+    "TotalPrice": 200
+  },
+  {
+    "TableNumber": 11,
+    "Items": [
+      {
+        "Id": 0,
+        "Name": "\u0158\u00EDzek",
+        "Category": "",
+        "Price": 195
+      },
+      {
+        "Id": 0,
+        "Name": "Coca-Cola",
+        "Category": "",
+        "Price": 50
+      },
+      {
+        "Id": 0,
+        "Name": "Coca-Cola",
+        "Category": "",
+        "Price": 50
+      }
+    ],
+    "PaymentTime": "2026-06-02T16:58:54.7268758+02:00",
+    "PaymentMethod": "Kartou",
+    "TotalPrice": 295
+  },
+  {
+    "TableNumber": 23,
+    "Items": [
+      {
+        "Id": 0,
+        "Name": "Coca-Cola",
+        "Category": "",
+        "Price": 50
+      },
+      {
+        "Id": 0,
+        "Name": "Coca-Cola",
+        "Category": "",
+        "Price": 50
+      }
+    ],
+    "PaymentTime": "2026-06-02T17:04:35.6061819+02:00",
+    "PaymentMethod": "Hotove",
+    "TotalPrice": 100
+  }
+]
